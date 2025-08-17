@@ -1,4 +1,4 @@
-import Reservation from "../models/Reservation.js";
+
 
 export async function createReservation(req, res) {
   try {
@@ -24,10 +24,4 @@ export async function listReservations(req, res) {
     console.error("listReservations", err);
     return res.status(500).json({ error: "Error listando reservas" });
   }
-}
-import Reservation from "../models/Reservation.js";
-
-export async function createReservation(req, res) {
-  const r = await Reservation.create(req.body);
-  res.status(201).json(r);
 }
