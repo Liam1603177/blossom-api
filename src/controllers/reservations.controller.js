@@ -1,4 +1,5 @@
-
+import Reservation from "../models/Reservation.js";
+import Reservation from "../models/Reservation.js";
 
 export async function createReservation(req, res) {
   try {
