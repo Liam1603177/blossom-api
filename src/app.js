@@ -17,7 +17,7 @@ app.use(express.json());
 const origin = process.env.CORS_ORIGIN?.split(",").map(s => s.trim());
 app.use(cors({ origin, credentials: true }));
 
-app.get("/api/health", (_req, res) => res.json({ status: "ok" }));
+app.get("/api/health", (_req, res) => res.json({ ok: true, time: new Date().toISOString() }));
 
 app.use("/api/upload", uploadRouter);
 app.use("/api/auth", authRouter);

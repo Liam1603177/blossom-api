@@ -1,10 +1,13 @@
 import { Router } from "express";
-import { createReservation } from "../controllers/reservations.controller.js";
-import { validate } from "../middleware/validate.js";
-import { reservationCreateSchema } from "../validation/schemas.js";
+import { createReservation, listReservations } from "../controllers/reservations.controller.js";
+import { requireAuth, requireAdmin } from "../middleware/auth.js";
 
 const router = Router();
 
-router.post("/", validate(reservationCreateSchema), createReservation);
+// pública (form del sitio)
+router.post("/", createReservation);
+
+// protegida (panel admin)
+router.get("/", requireAuth, requireAdmin, listReservations);
 
 export default router;
