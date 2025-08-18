@@ -16,6 +16,7 @@ export async function createReservation(req, res) {
   }
 }
 
+
 export async function listReservations(req, res) {
   try {
     const items = await Reservation.find().sort({ createdAt: -1 });
@@ -23,5 +24,20 @@ export async function listReservations(req, res) {
   } catch (err) {
     console.error("listReservations", err);
     return res.status(500).json({ error: "Error listando reservas" });
+  }
+}
+
+// Eliminar reserva por ID
+export async function deleteReservation(req, res) {
+  try {
+    const { id } = req.params;
+    const deleted = await Reservation.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.status(404).json({ error: "Reserva no encontrada" });
+    }
+    return res.json({ ok: true });
+  } catch (err) {
+    console.error("deleteReservation", err);
+    return res.status(500).json({ error: "Error eliminando reserva" });
   }
 }
