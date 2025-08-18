@@ -13,3 +13,4 @@ router.get("/", requireAuth, requireAdmin, listReservations);
 
 // Eliminar reserva (solo admin)
 router.delete("/:id", requireAuth, requireAdmin, deleteReservation);
+export default router;
